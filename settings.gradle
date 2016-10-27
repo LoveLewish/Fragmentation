@@ -1,1 +1,1 @@
-include ':demo', ':fragmentation', ':fragmentation_swipeback'
+include ':demo', ':fragmentation', ':fragmentation_swipeback', ':selfdemo'
