@@ -111,7 +111,7 @@ public class MainActivity extends SupportActivity
                 pop();
             } else {
                 if (System.currentTimeMillis() - TOUCH_TIME < WAIT_TIME) {
-                    finish();
+                        finish();
                 } else {
                     TOUCH_TIME = System.currentTimeMillis();
                     Toast.makeText(this, R.string.press_again_exit,Toast.LENGTH_SHORT).show();
