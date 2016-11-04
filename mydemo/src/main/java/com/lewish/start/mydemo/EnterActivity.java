@@ -1,12 +1,16 @@
 package com.lewish.start.mydemo;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.Button;
+
+import com.lewish.start.mydemo.flow.activity.FlowMainActivity;
 
 public class EnterActivity extends AppCompatActivity implements View.OnClickListener {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -15,25 +19,26 @@ public class EnterActivity extends AppCompatActivity implements View.OnClickList
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        TextView mtvBtnFlow = (TextView) findViewById(R.id.tv_btn_flow);
-        TextView mtvBtnWechat = (TextView) findViewById(R.id.tv_btn_wechat);
-        TextView mtvBtnZhihu = (TextView) findViewById(R.id.tv_btn_zhihu);
+        Button mBtnFlow = (Button) findViewById(R.id.btn_flow);
+        Button mBtnWechat = (Button) findViewById(R.id.btn_wechat);
+        Button mBtnZhihu = (Button) findViewById(R.id.btn_zhihu);
 
-        mtvBtnFlow.setOnClickListener(this);
-        mtvBtnWechat.setOnClickListener(this);
-        mtvBtnZhihu.setOnClickListener(this);
+        mBtnFlow.setOnClickListener(this);
+        mBtnWechat.setOnClickListener(this);
+        mBtnZhihu.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.tv_btn_flow :
+            case R.id.btn_flow:
+                startActivity(new Intent(this, FlowMainActivity.class));
+                break;
+            case R.id.btn_wechat:
 
                 break;
-            case R.id.tv_btn_wechat :
-
-                break;
-            case R.id.tv_btn_zhihu :
+            case R.id.btn_zhihu:
 
                 break;
         }
