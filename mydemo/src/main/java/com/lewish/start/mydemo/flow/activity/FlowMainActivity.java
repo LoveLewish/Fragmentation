@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.lewish.start.mydemo.R;
 import com.lewish.start.mydemo.common.base.fragment.BaseMainFragment;
+import com.lewish.start.mydemo.flow.fragment.FlowHomeFragment;
 
 import me.yokeyword.fragmentation.SupportActivity;
 
@@ -41,7 +42,9 @@ public class FlowMainActivity extends SupportActivity implements BaseMainFragmen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flow_main);
-
+        if(savedInstanceState==null) {
+            loadRootFragment(R.id.fl_content, FlowHomeFragment.newInstance());
+        }
         initViews();
         setListener();
     }
