@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -30,6 +29,8 @@ public class DetailFragment extends SupportFragment {
     public static final String ARTICLE_TITLE = "article_title";
     public static final String KEY_RESULT_TITLE = "key_result_title";
 
+    public static final int REQ_MODIFY_FRAGMENT = 100;
+
     private String mStrArticleTitle;
 
     private CoordinatorLayout mRootLayout;
@@ -37,16 +38,18 @@ public class DetailFragment extends SupportFragment {
     private NestedScrollView mNesScrollview;
     private TextView mTvContent;
     private FloatingActionButton mFab;
-    public static DetailFragment newInstance(Bundle bundle){
+
+    public static DetailFragment newInstance(Bundle bundle) {
         DetailFragment instance = new DetailFragment();
         instance.setArguments(bundle);
         return instance;
     }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle bundle = getArguments();
-        if(bundle!=null) {
+        if (bundle != null) {
             mStrArticleTitle = bundle.getString(ARTICLE_TITLE);
         }
     }
@@ -58,7 +61,8 @@ public class DetailFragment extends SupportFragment {
         initView(view);
         return view;
     }
-    private void initView(View view){
+
+    private void initView(View view) {
         mRootLayout = (CoordinatorLayout) view.findViewById(coordinator_layout);
         mToolbar = (Toolbar) view.findViewById(R.id.toolbar);
         mNesScrollview = (NestedScrollView) view.findViewById(R.id.nes_scrollview);
@@ -74,13 +78,9 @@ public class DetailFragment extends SupportFragment {
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(mRootLayout,"你要上天？",Snackbar.LENGTH_SHORT)
-                        .setAction("上天", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Toast.makeText(_mActivity, "飛", Toast.LENGTH_SHORT).show();
-                            }
-                        }).show();
+                Bundle bundle = new Bundle();
+                bundle.putString(DetailFragment.ARTICLE_TITLE, mStrArticleTitle);
+                startForResult(ModifyDetailFragment.newInstance(bundle), REQ_MODIFY_FRAGMENT);
             }
         });
     }
@@ -108,6 +108,7 @@ public class DetailFragment extends SupportFragment {
             }
         });
     }
+
     /**
      * 这里演示:
      * 比较复杂的Fragment页面会在第一次start时,导致动画卡顿
@@ -118,5 +119,16 @@ public class DetailFragment extends SupportFragment {
     @Override
     protected void onEnterAnimationEnd(Bundle savedInstanceState) {
         mTvContent.setText(R.string.large_text);
+    }
+
+    @Override
+    protected void onFragmentResult(int requestCode, int resultCode, Bundle data) {
+        if(requestCode == REQ_MODIFY_FRAGMENT && resultCode == RESULT_OK && data != null) {
+            mStrArticleTitle = data.getString(ARTICLE_TITLE);
+            mToolbar.setTitle(mStrArticleTitle);
+
+            getArguments().putString(ARTICLE_TITLE,mStrArticleTitle);
+            Toast.makeText(_mActivity, "标题修改完成", Toast.LENGTH_SHORT).show();
+        }
     }
 }
