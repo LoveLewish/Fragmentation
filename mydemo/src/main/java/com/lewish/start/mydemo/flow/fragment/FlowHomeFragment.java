@@ -164,7 +164,9 @@ public class FlowHomeFragment extends BaseMainFragment {
         mFlowHomeAdaper.setOnItemClickListener(new FlowHomeAdaper.onItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
-                Toast.makeText(_mActivity, "postion = "+ position, Toast.LENGTH_SHORT).show();
+                Bundle bundle = new Bundle();
+                bundle.putString(DetailFragment.ARTICLE_TITLE,mTitles[position%3]);
+                start(DetailFragment.newInstance(bundle));
             }
         });
 
