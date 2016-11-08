@@ -1,4 +1,4 @@
-package com.lewish.start.mydemo.flow.fragment;
+package com.lewish.start.mydemo.flow.fragment.home;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

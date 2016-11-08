@@ -16,9 +16,11 @@ import android.widget.Toast;
 
 import com.lewish.start.mydemo.R;
 import com.lewish.start.mydemo.common.base.fragment.BaseMainFragment;
-import com.lewish.start.mydemo.flow.fragment.FlowHomeFragment;
+import com.lewish.start.mydemo.flow.fragment.discovery.DiscoveryFragment;
+import com.lewish.start.mydemo.flow.fragment.home.FlowHomeFragment;
 
 import me.yokeyword.fragmentation.SupportActivity;
+import me.yokeyword.fragmentation.SupportFragment;
 
 import static com.lewish.start.mydemo.R.id.drawer_layout;
 import static com.lewish.start.mydemo.R.id.fl_content;
@@ -69,10 +71,22 @@ public class FlowMainActivity extends SupportActivity implements BaseMainFragmen
                         String tips = null;
                         switch (itemId) {
                             case  R.id.nv_home:
-                                tips = "首页";
+                                FlowHomeFragment fragment = findFragment(FlowHomeFragment.class);
+                                start(fragment, SupportFragment.SINGLETASK);
                                 break;
                             case  R.id.nv_discover:
-                                tips = "发现";
+                                DiscoveryFragment discoveryFragment = findFragment(DiscoveryFragment.class);
+                                if (discoveryFragment == null) {
+                                    popTo(FlowHomeFragment.class, false, new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            start(DiscoveryFragment.newInstance(null));
+                                        }
+                                    });
+                                } else {
+                                    // 如果已经在栈内,则以SingleTask模式start
+                                    start(discoveryFragment, SupportFragment.SINGLETASK);
+                                }
                                 break;
                             case  R.id.nv_shop:
                                 tips = "商店";
@@ -118,6 +132,10 @@ public class FlowMainActivity extends SupportActivity implements BaseMainFragmen
         if(mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
         }else {
+            SupportFragment topFragment = getTopFragment();
+            if(topFragment instanceof FlowHomeFragment) {
+                mNavigationView.setCheckedItem(R.id.nv_home);
+            }
             if(getSupportFragmentManager().getBackStackEntryCount()>1) {
                 pop();
             }else{
