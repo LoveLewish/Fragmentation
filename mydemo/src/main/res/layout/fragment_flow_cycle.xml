@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorAccent"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay"
+            app:titleTextAppearance="@style/Toolbar_TextAppearance_White"
+            app:layout_scrollFlags="scroll|enterAlways"/>
+    </android.support.design.widget.AppBarLayout>
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="循环Fragment3"
+        android:gravity="center"
+        android:textSize="30sp"/>
+
+    <Button
+        android:id="@+id/btn_next_popnow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="进入循环Fragment,并关闭当前页面"/>
+
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="进入循环Fragment"
+        android:layout_marginTop="48dp"/>
+</LinearLayout>
