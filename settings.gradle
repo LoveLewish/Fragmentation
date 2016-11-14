@@ -1,1 +1,1 @@
-include ':demo', ':fragmentation', ':fragmentation_swipeback', ':selfdemo', ':mydemo'
+include ':demo', ':fragmentation', ':fragmentation_swipeback', ':selfdemo', ':mydemo', 'RecyclerViewDemo', 'SwipeRefreshLayoutDemo'
