@@ -59,11 +59,11 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        if (!mBooleanArray.get(position)) {
+        if (!mBooleanArray.get(position)) {//  未被选中
             holder.viewLine.setVisibility(View.INVISIBLE);
             holder.itemView.setBackgroundResource(R.color.bg_app);
             holder.tvName.setTextColor(Color.BLACK);
-        } else {
+        } else {//选中
             holder.viewLine.setVisibility(View.VISIBLE);
             holder.itemView.setBackgroundColor(Color.WHITE);
             holder.tvName.setTextColor(mContext.getResources().getColor(R.color.colorAccent));

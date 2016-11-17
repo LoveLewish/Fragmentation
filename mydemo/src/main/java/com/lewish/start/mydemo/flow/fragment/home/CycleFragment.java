@@ -30,12 +30,13 @@ public class CycleFragment extends SupportFragment {
     private Button mBtnNextPopNow;
     private Button btnNext;
 
-    public static CycleFragment newInstance(Bundle bundle) {
+    public static CycleFragment newInstance(int cycleNum){
         CycleFragment instance = new CycleFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(CYCLE_NUM,cycleNum);
         instance.setArguments(bundle);
         return instance;
     }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,18 +92,14 @@ public class CycleFragment extends SupportFragment {
         mBtnNextPopNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putInt(CYCLE_NUM,cycleNum+1);
-                startWithPop(CycleFragment.newInstance(bundle));
+                startWithPop(CycleFragment.newInstance(cycleNum+1));
             }
         });
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putInt(CYCLE_NUM,cycleNum+1);
-                start(CycleFragment.newInstance(bundle));
+                start(CycleFragment.newInstance(cycleNum+1));
             }
         });
     }

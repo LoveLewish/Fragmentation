@@ -78,7 +78,7 @@ public class FlowHomeAdaper extends RecyclerView.Adapter<FlowHomeAdaper.MyViewHo
     class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView tvTitle, tvContent;
 
-        public MyViewHolder(View itemView) {
+        MyViewHolder(View itemView) {
             super(itemView);
             tvTitle = (TextView) itemView.findViewById(R.id.tv_title);
             tvContent = (TextView) itemView.findViewById(tv_content);

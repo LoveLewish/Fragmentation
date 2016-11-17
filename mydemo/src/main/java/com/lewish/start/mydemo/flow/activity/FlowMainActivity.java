@@ -18,6 +18,8 @@ import com.lewish.start.mydemo.R;
 import com.lewish.start.mydemo.common.base.fragment.BaseMainFragment;
 import com.lewish.start.mydemo.flow.fragment.discovery.DiscoveryFragment;
 import com.lewish.start.mydemo.flow.fragment.home.FlowHomeFragment;
+import com.lewish.start.mydemo.flow.fragment.login.FlowRegisterFragment;
+import com.lewish.start.mydemo.flow.fragment.shop.ShopFragment;
 
 import me.yokeyword.fragmentation.SupportActivity;
 import me.yokeyword.fragmentation.SupportFragment;
@@ -73,6 +75,7 @@ public class FlowMainActivity extends SupportActivity implements BaseMainFragmen
                             case  R.id.nv_home:
                                 FlowHomeFragment fragment = findFragment(FlowHomeFragment.class);
                                 start(fragment, SupportFragment.SINGLETASK);
+                                tips = "首页";
                                 break;
                             case  R.id.nv_discover:
                                 DiscoveryFragment discoveryFragment = findFragment(DiscoveryFragment.class);
@@ -87,11 +90,36 @@ public class FlowMainActivity extends SupportActivity implements BaseMainFragmen
                                     // 如果已经在栈内,则以SingleTask模式start
                                     start(discoveryFragment, SupportFragment.SINGLETASK);
                                 }
+                                tips = "发现";
                                 break;
                             case  R.id.nv_shop:
+                                final ShopFragment shopFragment = findFragment(ShopFragment.class);
+                                if (shopFragment == null) {
+                                    popTo(FlowHomeFragment.class, false, new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            start(ShopFragment.newInstance(null));
+                                        }
+                                    });
+                                } else {
+                                    // 如果已经在栈内,则以SingleTask模式start
+                                    start(shopFragment, SupportFragment.SINGLETASK);
+                                }
                                 tips = "商店";
                                 break;
                             case  R.id.nv_login:
+                                final FlowRegisterFragment flowRegisterFragment = findFragment(FlowRegisterFragment.class);
+                                if (flowRegisterFragment == null) {
+                                    popTo(FlowHomeFragment.class, false, new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            start(FlowRegisterFragment.newInstance());
+                                        }
+                                    });
+                                } else {
+                                    // 如果已经在栈内,则以SingleTask模式start
+                                    start(flowRegisterFragment, SupportFragment.SINGLETASK);
+                                }
                                 tips = "登录";
                                 break;
                             case R.id.swipe_activity_fragment:

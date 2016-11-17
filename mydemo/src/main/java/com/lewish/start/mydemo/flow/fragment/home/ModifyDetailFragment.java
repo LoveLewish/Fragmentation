@@ -99,9 +99,7 @@ public class ModifyDetailFragment extends SupportFragment {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putInt(CycleFragment.CYCLE_NUM,1);
-                start(CycleFragment.newInstance(bundle));
+                start(CycleFragment.newInstance(1));
             }
         });
     }
